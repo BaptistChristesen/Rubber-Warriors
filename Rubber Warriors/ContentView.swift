@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var PlayerArray = ["Reg","Blue","Baby", "Flower"]
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            ScrollView(.horizontal){
+                        HStack {
+                            ForEach(PlayerArray, id: \.self) {duck in
+                                ZStack{
+                                    
+                                    Image("\(duck)")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 100, height: 100, alignment: .center)
+                                    LinearGradient(colors: [.pink.opacity(0.2),.purple.opacity(0.3)], startPoint: .top, endPoint: .bottom)
+                                        .frame(width: 110, height: 110, alignment: .center)
+                                        .clipShape(RoundedRectangle(cornerRadius: 25))
+                                }
+                            }
+                        } .fixedSize()
+                            .padding()
+                    }
+            
         }
         .padding()
+        .position(CGPoint(x: 192.5, y: 700))
     }
 }
 
