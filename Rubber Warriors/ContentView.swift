@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var PlayerArray = ["Reg","Blue","Baby", "Flower"]
+    @State var PlayerArray = ["Fire","Earth","Water","Ice"]
     var body: some View {
         VStack {
             ScrollView(.horizontal){
