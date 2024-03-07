@@ -14,6 +14,7 @@
 		30FE73702B8F890500B963B7 /* Rubber_WarriorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE736F2B8F890500B963B7 /* Rubber_WarriorsTests.swift */; };
 		30FE737A2B8F890500B963B7 /* Rubber_WarriorsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE73792B8F890500B963B7 /* Rubber_WarriorsUITests.swift */; };
 		30FE737C2B8F890500B963B7 /* Rubber_WarriorsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30FE737B2B8F890500B963B7 /* Rubber_WarriorsUITestsLaunchTests.swift */; };
+		467118472B98C5F700445F2B /* Ducks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467118462B98C5F700445F2B /* Ducks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		30FE73752B8F890500B963B7 /* Rubber WarriorsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Rubber WarriorsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		30FE73792B8F890500B963B7 /* Rubber_WarriorsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubber_WarriorsUITests.swift; sourceTree = "<group>"; };
 		30FE737B2B8F890500B963B7 /* Rubber_WarriorsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rubber_WarriorsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		467118462B98C5F700445F2B /* Ducks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ducks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				30FE735E2B8F890300B963B7 /* Rubber_WarriorsApp.swift */,
 				30FE73602B8F890300B963B7 /* ContentView.swift */,
+				467118462B98C5F700445F2B /* Ducks.swift */,
 				30FE73622B8F890500B963B7 /* Assets.xcassets */,
 				30FE73642B8F890500B963B7 /* Preview Content */,
 			);
@@ -258,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30FE73612B8F890300B963B7 /* ContentView.swift in Sources */,
+				467118472B98C5F700445F2B /* Ducks.swift in Sources */,
 				30FE735F2B8F890300B963B7 /* Rubber_WarriorsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

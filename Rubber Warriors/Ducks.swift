@@ -7,6 +7,14 @@
 
 import Foundation
 
-@Observable class DuckGrid: Identifiable {
-    var isOccupied = false
+@Observable class Duck: Identifiable {
+    var image: String
+    var health: Int
+    var damage: Int
+    
+    init(image: String, health: Int, damage: Int) {
+        self.image = image
+        self.health = health
+        self.damage = damage
+    }
 }
