@@ -4,10 +4,33 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Rubber Warriors 1.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Rubber Warriors.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>30FE735A2B8F890300B963B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30FE736A2B8F890500B963B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30FE73742B8F890500B963B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
