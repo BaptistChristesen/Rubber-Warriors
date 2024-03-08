@@ -29,19 +29,17 @@ struct ContentView: View {
     let options1 = ["Original", "Fire", "Water", "Earth", "Ice"]
     let options2 = ["Original", "Fire", "Water", "Earth", "Ice"]
     let options3 = ["Original", "Fire", "Water", "Earth", "Ice"]
-    @State var Option1i = "Original"
-    @State vare duck1 Health
+    @State var duck1 = "balls"
     //let options1 =  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     //let options2 =  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     //let options3 =  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     
-    
     var body: some View {
         VStack {
             HStack {
-                DropdownMenu(title: "Menu 1", selection: selection1, options: options1)
-                DropdownMenu(title: "Menu 2", selection: selection2, options: options2)
-                DropdownMenu(title: "Menu 3", selection: selection3, options: options3)
+                DropdownMenu(title: "Menu 1", selection: selection1, options: options1, duck: duck1)
+                DropdownMenu(title: "Menu 2", selection: selection2, options: options2, duck: duck1)
+                DropdownMenu(title: "Menu 3", selection: selection3, options: options3, duck: duck1)
             }
             ScrollView(.horizontal) {
                 HStack {
@@ -51,12 +49,9 @@ struct ContentView: View {
                             // Check the selection and display the corresponding image
                             
                             
+                            
                             //Duck 1
                             
-                           
-                            menu {
-                                
-                            }
                             
                             
                             if selection1 == options1[0] {
@@ -86,7 +81,6 @@ struct ContentView: View {
                                 Text("Attack")
                                     .font(.system(size: 12, weight: .light, design: .serif))
                                 ProgressView(value: Float(AttackArray[0]), total: 100)
-                                Option1i = "Fire"
                             }
                             else if selection1 == options1[2] {
                                 Image("Water")
@@ -305,26 +299,26 @@ struct DropdownMenu: View {
     let title: String
     @State var selection: String
     let options: [String]
+    @State var duck : String
     
     var body: some View {
         Menu {
             ForEach(options, id: \.self) { option in
-                Button(option) { selection = option }
+                Button(option) { selection = option
+                    duck = selection
+                    
+                }
             }
         } label: {
             Text(selection)
                 .foregroundColor(.black)
-                .frame(maxWidth: .infinity) // Fills available space
+                .frame(maxWidth: .infinity)
                 .padding(.horizontal)
-            //.overlay(
-            //Image(systemName: "chevron.down")
-            //.foregroundColor(.gray)
-            //)
         }
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(dropdownmenu: <#DropdownMenu#>)
 }
 
