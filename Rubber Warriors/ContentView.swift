@@ -50,18 +50,37 @@ struct ContentView: View {
                 VStack {
                     
 //reposition this schmuck
-                    Image("Rainbow")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                    Text("Health")
-                        .font(.system(size: 12, weight: .light, design: .serif))
-                    ProgressView(value: enemyHp, total: enemyHpTotal)
-                    Text("Attack")
-                        .font(.system(size: 12, weight: .light, design: .serif))
-                    ProgressView(value: enemyDmg, total: enemyDmgTotal)
+//for some reason this guy wont gray out when he dies
+                    if(enemyHp == 0){
+                        Image("Sketch")
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                        Text("Health")
+                            .font(.system(size: 12, weight: .light, design: .serif))
+                        ProgressView(value: 0, total: enemyHpTotal)
+                        Text("Attack")
+                            .font(.system(size: 12, weight: .light, design: .serif))
+                        ProgressView(value: 0, total: enemyDmgTotal)
+                    }
+                    else{
+                        Image("Rainbow")
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                        Text("Health")
+                            .font(.system(size: 12, weight: .light, design: .serif))
+                        ProgressView(value: enemyHp, total: enemyHpTotal)
+                        Text("Attack")
+                            .font(.system(size: 12, weight: .light, design: .serif))
+                        ProgressView(value: enemyDmg, total: enemyDmgTotal)
+                    }
                 }
             }
             .frame(width: 110, height: 200)
+            
+            
+            
+            
+            
             
             
             
@@ -87,6 +106,18 @@ struct ContentView: View {
                 }
                 attackTurn += 1
             }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             //      Image(DUckSelection1)
             
             //      HStack {
@@ -145,19 +176,30 @@ struct ContentView: View {
                                     .padding(.horizontal)
                             }
                             //Dropdown end
-                            Image(DUckSelection1)
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                            Text("Health")
-                                .font(.system(size: 12, weight: .light, design: .serif))
-                            ProgressView(value: hp1, total: hp1Total)
-                            
-                            
+                            if(hp1 == 0){
+                                Image("Sketch")
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                Text("Health")
+                                    .font(.system(size: 12, weight: .light, design: .serif))
+                                ProgressView(value: 0, total: hp1Total)
+                                Text("Attack")
+                                    .font(.system(size: 12, weight: .light, design: .serif))
+                                ProgressView(value: dmg1, total: dmg1Total)
+                            }
+                            else{
+                                Image(DUckSelection1)
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                Text("Health")
+                                    .font(.system(size: 12, weight: .light, design: .serif))
+                                ProgressView(value: hp1, total: hp1Total)
 //Whats is the attack bar for?
 //Will they gain/lose attack damage over time?
-                            Text("Attack")
-                                .font(.system(size: 12, weight: .light, design: .serif))
-                            ProgressView(value: dmg1, total: dmg1Total)
+                                Text("Attack")
+                                    .font(.system(size: 12, weight: .light, design: .serif))
+                                ProgressView(value: dmg1, total: dmg1Total)
+                            }
                         }
                         .frame(width: 110, height: 200)
                         
@@ -177,15 +219,29 @@ struct ContentView: View {
                                     .padding(.horizontal)
                             }
                             //end
-                            Image(DUckSelection2)
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                            Text("Health")
-                                .font(.system(size: 12, weight: .light, design: .serif))
-                            ProgressView(value: hp2, total: hp2Total)
-                            Text("Attack")
-                                .font(.system(size: 12, weight: .light, design: .serif))
-                            ProgressView(value: dmg2, total: dmg2Total)
+                            
+                            if(hp2 == 0){
+                                Image("Sketch")
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                Text("Health")
+                                    .font(.system(size: 12, weight: .light, design: .serif))
+                                ProgressView(value: 0, total: hp2Total)
+                                Text("Attack")
+                                    .font(.system(size: 12, weight: .light, design: .serif))
+                                ProgressView(value: dmg1, total: dmg2Total)
+                            }
+                            else{
+                                Image(DUckSelection2)
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                Text("Health")
+                                    .font(.system(size: 12, weight: .light, design: .serif))
+                                ProgressView(value: hp2, total: hp2Total)
+                                Text("Attack")
+                                    .font(.system(size: 12, weight: .light, design: .serif))
+                                ProgressView(value: dmg2, total: dmg2Total)
+                            }
                         }
                         .frame(width: 110, height: 200)
                         
@@ -209,15 +265,29 @@ struct ContentView: View {
                                 }
                                 .frame(width: 110)
                                 //end
-                                Image(DUckSelection3)
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                Text("Health")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: hp3, total: hp3Total)
-                                Text("Attack")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: dmg3, total: dmg3Total)
+                                
+                                if(hp3 == 0){
+                                    Image("Sketch")
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                    Text("Health")
+                                        .font(.system(size: 12, weight: .light, design: .serif))
+                                    ProgressView(value: 0, total: hp3Total)
+                                    Text("Attack")
+                                        .font(.system(size: 12, weight: .light, design: .serif))
+                                    ProgressView(value: dmg1, total: dmg3Total)
+                                }
+                                else{
+                                    Image(DUckSelection3)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                    Text("Health")
+                                        .font(.system(size: 12, weight: .light, design: .serif))
+                                    ProgressView(value: hp3, total: hp3Total)
+                                    Text("Attack")
+                                        .font(.system(size: 12, weight: .light, design: .serif))
+                                    ProgressView(value: dmg3, total: dmg3Total)
+                                }
                             }
                         }
                         .frame(width: 110, height: 200)
