@@ -15,7 +15,6 @@ struct ContentView: View {
     @State var DUckSelection2 = "Original"
     @State var DUckSelection3 = "Original"
     @State private var attackTurn: Int = 0
-    @State private var whichDuck = Int.random(in: 0..<2)
     let duckTypes = ["Original", "Fire", "Water", "Earth", "Ice"]
     
 
@@ -68,10 +67,10 @@ struct ContentView: View {
             
             
 //Why is button off center?
-//Why do the bars not update when you click the button? Like they work for the enemy but not for the good guys
-            
+          
             
             Button("Attack") {
+                var whichDuck = Int.random(in: 0..<2)
                 if(attackTurn % 2 == 0){
                     enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
                 }
@@ -86,6 +85,7 @@ struct ContentView: View {
                         hp3 = hp3 - enemyDmg
                     }
                 }
+                attackTurn += 1
             }
             //      Image(DUckSelection1)
             
