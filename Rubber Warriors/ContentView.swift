@@ -17,7 +17,7 @@ struct ContentView: View {
     @State private var attackTurn: Int = 0
     let duckTypes = ["Original", "Fire", "Water", "Earth", "Ice"]
     
-
+    
     // State variables for health and attack
     @State private var hp1 = 100.00
     @State private var hp2 = 100.00
@@ -35,23 +35,23 @@ struct ContentView: View {
     @State private var enemyDmg = 50.00
     @State private var enemyHpTotal = 500.00
     @State private var enemyDmgTotal = 50.00
-
+    
     
     var body: some View {
         
         VStack {
             
             
-//Hi josh and brody, ik you wont look at the commit message like i said to so i wrote in comments as well! GLHF!
+            //Hi josh and brody, ik you wont look at the commit message like i said to so i wrote in comments as well! GLHF!
             
             
             ZStack {
                 
                 VStack {
                     
-//reposition this schmuck
-//for some reason this guy wont gray out when he dies
-                    if(enemyHp == 0){
+                    //reposition this schmuck
+                    //for some reason this guy wont gray out when he dies
+                    if(enemyHp <= 0){
                         Image("Sketch")
                             .resizable()
                             .frame(width: 100, height: 100)
@@ -63,7 +63,7 @@ struct ContentView: View {
                         ProgressView(value: 0, total: enemyDmgTotal)
                     }
                     else{
-                        Image("Rainbow")
+                        Image("goose")
                             .resizable()
                             .frame(width: 100, height: 100)
                         Text("Health")
@@ -85,28 +85,38 @@ struct ContentView: View {
             
             
             
-//Why is button off center?
-          
+            //Why is button off center?
+            
             
             Button("Attack") {
                 var whichDuck = Int.random(in: 0..<2) //ignore this warning
                 if(attackTurn % 2 == 0){
-                    enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
-                }
-                else{
-                    if(whichDuck == 0){
-                        hp1 = hp1 - enemyDmg
-                    }
-                    else if(whichDuck == 1){
-                        hp2 = hp2 - enemyDmg
+                    if(enemyHp > 0){
+                        enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
                     }
                     else{
+                        let alert = UIAlertController(title: "Victory!", message: "You Win!", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default)
+                        alert.addAction(action)
+                        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil) //ignore this warning as well
+                    }
+                }
+                else{
+                    if(whichDuck == 0 && hp1 != 0){
+                        hp1 = hp1 - enemyDmg
+                    }
+                    else if(whichDuck == 1 && hp2 != 0){
+                        
+                        hp2 = hp2 - enemyDmg
+                    }
+                    else if(whichDuck == 2 && hp3 != 0){
                         hp3 = hp3 - enemyDmg
                     }
                 }
                 attackTurn += 1
             }
-            
+        }
+        VStack{
             
             
             
@@ -176,7 +186,7 @@ struct ContentView: View {
                                     .padding(.horizontal)
                             }
                             //Dropdown end
-                            if(hp1 == 0){
+                            if(hp1 <= 0){
                                 Image("Sketch")
                                     .resizable()
                                     .frame(width: 100, height: 100)
@@ -194,8 +204,8 @@ struct ContentView: View {
                                 Text("Health")
                                     .font(.system(size: 12, weight: .light, design: .serif))
                                 ProgressView(value: hp1, total: hp1Total)
-//Whats is the attack bar for?
-//Will they gain/lose attack damage over time?
+                                //Whats is the attack bar for?
+                                //Will they gain/lose attack damage over time?
                                 Text("Attack")
                                     .font(.system(size: 12, weight: .light, design: .serif))
                                 ProgressView(value: dmg1, total: dmg1Total)
@@ -220,7 +230,7 @@ struct ContentView: View {
                             }
                             //end
                             
-                            if(hp2 == 0){
+                            if(hp2 <= 0){
                                 Image("Sketch")
                                     .resizable()
                                     .frame(width: 100, height: 100)
@@ -266,7 +276,7 @@ struct ContentView: View {
                                 .frame(width: 110)
                                 //end
                                 
-                                if(hp3 == 0){
+                                if(hp3 <= 0){
                                     Image("Sketch")
                                         .resizable()
                                         .frame(width: 100, height: 100)
@@ -301,7 +311,7 @@ struct ContentView: View {
                 }
                 // }
             }
-        }.position(CGPoint(x: 220, y: 570))
+        }.position(CGPoint(x: 220, y: 370))
     }
 }
 
