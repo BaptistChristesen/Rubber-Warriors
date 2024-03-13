@@ -89,7 +89,7 @@ struct ContentView: View {
           
             
             Button("Attack") {
-                var whichDuck = Int.random(in: 0..<2)
+                var whichDuck = Int.random(in: 0..<2) //ignore this warning
                 if(attackTurn % 2 == 0){
                     enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
                 }
