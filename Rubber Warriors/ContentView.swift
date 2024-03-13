@@ -34,10 +34,43 @@ struct ContentView: View {
     @State private var dmg3Total = 50.00
     @State private var enemyHp = 500.00
     @State private var enemyDmg = 50.00
+    @State private var enemyHpTotal = 500.00
+    @State private var enemyDmgTotal = 50.00
 
     
     var body: some View {
+        
         VStack {
+            
+            
+//Hi josh and brody, ik you wont look at the commit message like i said to so i wrote in comments as well! GLHF!
+            
+            
+            ZStack {
+                
+                VStack {
+                    
+//reposition this schmuck
+                    Image("Rainbow")
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                    Text("Health")
+                        .font(.system(size: 12, weight: .light, design: .serif))
+                    ProgressView(value: enemyHp, total: enemyHpTotal)
+                    Text("Attack")
+                        .font(.system(size: 12, weight: .light, design: .serif))
+                    ProgressView(value: enemyDmg, total: enemyDmgTotal)
+                }
+            }
+            .frame(width: 110, height: 200)
+            
+            
+            
+            
+//Why is button off center?
+//Why do the bars not update when you click the button? Like they work for the enemy but not for the good guys
+            
+            
             Button("Attack") {
                 if(attackTurn % 2 == 0){
                     enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
@@ -198,7 +231,7 @@ struct ContentView: View {
                 }
                 // }
             }
-        }.position(CGPoint(x: 225, y: 670))
+        }.position(CGPoint(x: 220, y: 570))
     }
 }
 
