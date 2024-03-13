@@ -41,16 +41,10 @@ struct ContentView: View {
         
         VStack {
             
-            
-            //Hi josh and brody, ik you wont look at the commit message like i said to so i wrote in comments as well! GLHF!
-            
-            
             ZStack {
                 
                 VStack {
                     
-                    //reposition this schmuck
-                    //for some reason this guy wont gray out when he dies
                     if(enemyHp <= 0){
                         Image("Sketch")
                             .resizable()
@@ -77,19 +71,8 @@ struct ContentView: View {
             }
             .frame(width: 110, height: 200)
             
-            
-            
-            
-            
-            
-            
-            
-            
-            //Why is button off center?
-            
-            
             Button("Attack") {
-                var whichDuck = Int.random(in: 0..<2) //ignore this warning
+                var whichDuck = Int.random(in: 0..<3) //ignore this warning
                 if(attackTurn % 2 == 0){
                     if(enemyHp > 0){
                         enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
@@ -102,15 +85,47 @@ struct ContentView: View {
                     }
                 }
                 else{
-                    if(whichDuck == 0 && hp1 != 0){
-                        hp1 = hp1 - enemyDmg
+                    if(whichDuck == 0){
+                        if(hp1 > 0){
+                            hp1 = hp1 - enemyDmg
+                        }
+                        else{
+                            whichDuck = Int.random(in: 0..<2)
+                            if(whichDuck == 0){
+                                hp2 = hp2 - enemyDmg
+                            }
+                            else{
+                                hp3 = hp3 - enemyDmg
+                            }
+                        }
                     }
-                    else if(whichDuck == 1 && hp2 != 0){
-                        
-                        hp2 = hp2 - enemyDmg
+                    else if(whichDuck == 1){
+                        if(hp2 > 0){
+                            hp2 = hp2 - enemyDmg
+                        }
+                        else{
+                            whichDuck = Int.random(in: 0..<2)
+                            if(whichDuck == 0){
+                                hp1 = hp1 - enemyDmg
+                            }
+                            else{
+                                hp3 = hp3 - enemyDmg
+                            }
+                        }
                     }
-                    else if(whichDuck == 2 && hp3 != 0){
-                        hp3 = hp3 - enemyDmg
+                    else if(whichDuck == 2){
+                        if(hp3 > 0){
+                            hp3 = hp3 - enemyDmg
+                        }
+                        else{
+                            whichDuck = Int.random(in: 0..<2)
+                            if(whichDuck == 0){
+                                hp2 = hp2 - enemyDmg
+                            }
+                            else{
+                                hp1 = hp1 - enemyDmg
+                            }
+                        }
                     }
                 }
                 attackTurn += 1
