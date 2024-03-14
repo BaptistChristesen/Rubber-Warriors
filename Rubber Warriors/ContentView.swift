@@ -38,295 +38,256 @@ struct ContentView: View {
     
     
     var body: some View {
-        
-        VStack {
-            
-            ZStack {
+        ZStack {
+            Image("duckgamebackgroundbattle")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+            VStack {
                 
-                VStack {
-                    
-                    if(enemyHp <= 0){
-                        Image("Sketch")
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                        Text("Health")
-                            .font(.system(size: 12, weight: .light, design: .serif))
-                        ProgressView(value: 0, total: enemyHpTotal)
-                        Text("Attack")
-                            .font(.system(size: 12, weight: .light, design: .serif))
-                        ProgressView(value: 0, total: enemyDmgTotal)
-                    }
-                    else{
-                        Image("goose")
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                        Text("Health")
-                            .font(.system(size: 12, weight: .light, design: .serif))
-                        ProgressView(value: enemyHp, total: enemyHpTotal)
-                        Text("Attack")
-                            .font(.system(size: 12, weight: .light, design: .serif))
-                        ProgressView(value: enemyDmg, total: enemyDmgTotal)
-                    }
-                }
-            }
-            .frame(width: 110, height: 200)
-            
-            Button("Attack") {
-                var whichDuck = Int.random(in: 0..<3) //ignore this warning
-                if(attackTurn % 2 == 0){
-                    if(enemyHp > 0){
-                        enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
-                    }
-                    else{
-                        let alert = UIAlertController(title: "Victory!", message: "You Win!", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default)
-                        alert.addAction(action)
-                        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil) //ignore this warning as well
-                    }
-                }
-                else{
-                    if(whichDuck == 0){
-                        if(hp1 > 0){
-                            hp1 = hp1 - enemyDmg
-                        }
-                        else{
-                            whichDuck = Int.random(in: 0..<2)
-                            if(whichDuck == 0){
-                                hp2 = hp2 - enemyDmg
-                            }
-                            else{
-                                hp3 = hp3 - enemyDmg
-                            }
-                        }
-                    }
-                    else if(whichDuck == 1){
-                        if(hp2 > 0){
-                            hp2 = hp2 - enemyDmg
-                        }
-                        else{
-                            whichDuck = Int.random(in: 0..<2)
-                            if(whichDuck == 0){
-                                hp1 = hp1 - enemyDmg
-                            }
-                            else{
-                                hp3 = hp3 - enemyDmg
-                            }
-                        }
-                    }
-                    else if(whichDuck == 2){
-                        if(hp3 > 0){
-                            hp3 = hp3 - enemyDmg
-                        }
-                        else{
-                            whichDuck = Int.random(in: 0..<2)
-                            if(whichDuck == 0){
-                                hp2 = hp2 - enemyDmg
-                            }
-                            else{
-                                hp1 = hp1 - enemyDmg
-                            }
-                        }
-                    }
-                }
-                attackTurn += 1
-            }
-        }
-        VStack{
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            //      Image(DUckSelection1)
-            
-            //      HStack {
-            //          DropdownMenu(title: "Duck 1", selection: selectedDuck1, options: duckTypes, duck: selectedDuck1)
-            //          DropdownMenu(title: "Duck 2", selection: selectedDuck2, options: duckTypes, duck: selectedDuck2)
-            //          DropdownMenu(title: "Duck 3", selection: selectedDuck3, options: duckTypes, duck: selectedDuck3)
-            //          Button("fire") {
-            //              DUckSelection1 = "Fire"
-            //          }
-            //          Button("Ice") {
-            //              DUckSelection1 = "Ice"
-            //          }
-            //          Button("Original") {
-            //              DUckSelection1 = "Original"
-            //          }
-            //
-            //          Menu {
-            //              ForEach(duckTypes, id: \.self) { option in
-            //                  Button(option) { selectedDuck1 = option
-            //                      DUckSelection1 = selectedDuck1
-            //
-            //                  }
-            //              }
-            //          } label: {
-            //              Text(selectedDuck1)
-            //                  .foregroundColor(.black)
-            //                  .frame(maxWidth: .infinity)
-            //                  .padding(.horizontal)
-            //          }
-            //      }
-            
-            
-            
-            
-            
-            
-            
-            ScrollView(.horizontal) {
-                //ForEach(0..<3) { index in{
                 ZStack {
-                    HStack {
-                        // Check the selection and display the corresponding image
-                        VStack {
-                            //Drop down start
-                            Menu {
-                                ForEach(duckTypes, id: \.self) { option in
-                                    Button(option) { selectedDuck1 = option
-                                        DUckSelection1 = selectedDuck1
-                                        
-                                    }
-                                }
-                            } label: {
-                                Text(selectedDuck1)
-                                    .foregroundColor(.black)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.horizontal)
-                            }
-                            //Dropdown end
-                            if(hp1 <= 0){
-                                Image("Sketch")
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                Text("Health")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: 0, total: hp1Total)
-                                Text("Attack")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: dmg1, total: dmg1Total)
+                    
+                    VStack {
+                        
+                        if(enemyHp <= 0){
+                            Image("goosesketch")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                            Text("Health")
+                                .font(.system(size: 12, weight: .light, design: .serif))
+                            ProgressView(value: 0, total: enemyHpTotal)
+                            Text("Attack")
+                                .font(.system(size: 12, weight: .light, design: .serif))
+                            ProgressView(value: 0, total: enemyDmgTotal)
+                        }
+                        else{
+                            Image("goose")
+                                .resizable()
+                                .frame(width: 100, height: 100)
+                            Text("Health")
+                                .font(.system(size: 12, weight: .light, design: .serif))
+                            ProgressView(value: enemyHp, total: enemyHpTotal)
+                                .tint(.green)
+                            Text("Attack")
+                                .font(.system(size: 12, weight: .light, design: .serif))
+                            ProgressView(value: enemyDmg, total: enemyDmgTotal)
+                        }
+                    }
+                }
+                .frame(width: 110, height: 200)
+                
+                Button("Attack") {
+                    var whichDuck = Int.random(in: 0..<3) //ignore this warning
+                    if(attackTurn % 2 == 0){
+                        if(enemyHp > 0){
+                            enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
+                        }
+                        else{
+                            let alert = UIAlertController(title: "Victory!", message: "You Win!", preferredStyle: .alert)
+                            let action = UIAlertAction(title: "OK", style: .default)
+                            alert.addAction(action)
+                            UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil) //ignore this warning as well
+                        }
+                    }
+                    else{
+                        if(whichDuck == 0){
+                            if(hp1 > 0){
+                                hp1 = hp1 - enemyDmg
                             }
                             else{
-                                Image(DUckSelection1)
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                Text("Health")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: hp1, total: hp1Total)
-                                //Whats is the attack bar for?
-                                //Will they gain/lose attack damage over time?
-                                Text("Attack")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: dmg1, total: dmg1Total)
+                                whichDuck = Int.random(in: 0..<2)
+                                if(whichDuck == 0){
+                                    hp2 = hp2 - enemyDmg
+                                }
+                                else{
+                                    hp3 = hp3 - enemyDmg
+                                }
                             }
                         }
-                        .frame(width: 110, height: 200)
-                        
-                        VStack {
-                            //start
-                            Menu {
-                                ForEach(duckTypes, id: \.self) { option in
-                                    Button(option) { selectedDuck2 = option
-                                        DUckSelection2 = selectedDuck2
-                                        
-                                    }
-                                }
-                            } label: {
-                                Text(selectedDuck2)
-                                    .foregroundColor(.black)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.horizontal)
-                            }
-                            //end
-                            
-                            if(hp2 <= 0){
-                                Image("Sketch")
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                Text("Health")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: 0, total: hp2Total)
-                                Text("Attack")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: dmg1, total: dmg2Total)
+                        else if(whichDuck == 1){
+                            if(hp2 > 0){
+                                hp2 = hp2 - enemyDmg
                             }
                             else{
-                                Image(DUckSelection2)
-                                    .resizable()
-                                    .frame(width: 100, height: 100)
-                                Text("Health")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: hp2, total: hp2Total)
-                                Text("Attack")
-                                    .font(.system(size: 12, weight: .light, design: .serif))
-                                ProgressView(value: dmg2, total: dmg2Total)
+                                whichDuck = Int.random(in: 0..<2)
+                                if(whichDuck == 0){
+                                    hp1 = hp1 - enemyDmg
+                                }
+                                else{
+                                    hp3 = hp3 - enemyDmg
+                                }
                             }
                         }
-                        .frame(width: 110, height: 200)
-                        
-                        ZStack {
-                            
+                        else if(whichDuck == 2){
+                            if(hp3 > 0){
+                                hp3 = hp3 - enemyDmg
+                            }
+                            else{
+                                whichDuck = Int.random(in: 0..<2)
+                                if(whichDuck == 0){
+                                    hp2 = hp2 - enemyDmg
+                                }
+                                else{
+                                    hp1 = hp1 - enemyDmg
+                                }
+                            }
+                        }
+                    }
+                    attackTurn += 1
+                }
+            }
+            VStack{
+                ScrollView(.horizontal) {
+                    //ForEach(0..<3) { index in{
+                    ZStack {
+                        HStack {
+                            // Check the selection and display the corresponding image
                             VStack {
-                                
-                                //start
+                                //Drop down start
                                 Menu {
                                     ForEach(duckTypes, id: \.self) { option in
-                                        Button(option) { selectedDuck3 = option
-                                            DUckSelection3 = selectedDuck3
+                                        Button(option) { selectedDuck1 = option
+                                            DUckSelection1 = selectedDuck1
                                             
                                         }
                                     }
                                 } label: {
-                                    Text(selectedDuck3)
+                                    Text(selectedDuck1)
                                         .foregroundColor(.black)
                                         .frame(maxWidth: .infinity)
                                         .padding(.horizontal)
                                 }
-                                .frame(width: 110)
-                                //end
-                                
-                                if(hp3 <= 0){
+                                //Dropdown end
+                                if(hp1 <= 0){
                                     Image("Sketch")
                                         .resizable()
                                         .frame(width: 100, height: 100)
                                     Text("Health")
                                         .font(.system(size: 12, weight: .light, design: .serif))
-                                    ProgressView(value: 0, total: hp3Total)
+                                    ProgressView(value: 0, total: hp1Total)
                                     Text("Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
-                                    ProgressView(value: dmg1, total: dmg3Total)
+                                    ProgressView(value: dmg1, total: dmg1Total)
                                 }
                                 else{
-                                    Image(DUckSelection3)
+                                    Image(DUckSelection1)
                                         .resizable()
                                         .frame(width: 100, height: 100)
                                     Text("Health")
                                         .font(.system(size: 12, weight: .light, design: .serif))
-                                    ProgressView(value: hp3, total: hp3Total)
+                                    ProgressView(value: hp1, total: hp1Total)
+                                        .tint(.green)
+                                    //Whats is the attack bar for?
+                                    //Will they gain/lose attack damage over time?
                                     Text("Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
-                                    ProgressView(value: dmg3, total: dmg3Total)
+                                    ProgressView(value: dmg1, total: dmg1Total)
                                 }
                             }
+                            .frame(width: 110, height: 200)
+                            
+                            VStack {
+                                //start
+                                Menu {
+                                    ForEach(duckTypes, id: \.self) { option in
+                                        Button(option) { selectedDuck2 = option
+                                            DUckSelection2 = selectedDuck2
+                                            
+                                        }
+                                    }
+                                } label: {
+                                    Text(selectedDuck2)
+                                        .foregroundColor(.black)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.horizontal)
+                                }
+                                //end
+                                
+                                if(hp2 <= 0){
+                                    Image("Sketch")
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                    Text("Health")
+                                        .font(.system(size: 12, weight: .light, design: .serif))
+                                    ProgressView(value: 0, total: hp2Total)
+                                    Text("Attack")
+                                        .font(.system(size: 12, weight: .light, design: .serif))
+                                    ProgressView(value: dmg1, total: dmg2Total)
+                                }
+                                else{
+                                    Image(DUckSelection2)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                    Text("Health")
+                                        .font(.system(size: 12, weight: .light, design: .serif))
+                                    ProgressView(value: hp2, total: hp2Total)
+                                        .tint(.green)
+                                    Text("Attack")
+                                        .font(.system(size: 12, weight: .light, design: .serif))
+                                    ProgressView(value: dmg2, total: dmg2Total)
+                                }
+                            }
+                            .frame(width: 110, height: 200)
+                            
+                            ZStack {
+                                
+                                VStack {
+                                    
+                                    //start
+                                    Menu {
+                                        ForEach(duckTypes, id: \.self) { option in
+                                            Button(option) { selectedDuck3 = option
+                                                DUckSelection3 = selectedDuck3
+                                                
+                                            }
+                                        }
+                                    } label: {
+                                        Text(selectedDuck3)
+                                            .foregroundColor(.black)
+                                            .frame(maxWidth: .infinity)
+                                            .padding(.horizontal)
+                                    }
+                                    .frame(width: 110)
+                                    //end
+                                    
+                                    if(hp3 <= 0){
+                                        Image("Sketch")
+                                            .resizable()
+                                            .frame(width: 100, height: 100)
+                                        Text("Health")
+                                            .font(.system(size: 12, weight: .light, design: .serif))
+                                        ProgressView(value: 0, total: hp3Total)
+                                        Text("Attack")
+                                            .font(.system(size: 12, weight: .light, design: .serif))
+                                        ProgressView(value: dmg1, total: dmg3Total)
+                                    }
+                                    else{
+                                        Image(DUckSelection3)
+                                            .resizable()
+                                            .frame(width: 100, height: 100)
+                                        Text("Health")
+                                            .font(.system(size: 12, weight: .light, design: .serif))
+                                        ProgressView(value: hp3, total: hp3Total)
+                                            .tint(.green)
+                                        Text("Attack")
+                                            .font(.system(size: 12, weight: .light, design: .serif))
+                                        ProgressView(value: dmg3, total: dmg3Total)
+                                    }
+                                }
+                            }
+                            .frame(width: 110, height: 200)
+                            //                Text("Health")
+                            //                  .font(.system(size: 12, weight: .light, design: .serif))
+                            //                ProgressView(value: Float(health(for: index)), total: 100)
+                            //                Text("Attack")
+                            //                  .font(.system(size: 12, weight: .light, design: .serif))
+                            //                ProgressView(value: Float(attack(for: index)), total: 100)
                         }
-                        .frame(width: 110, height: 200)
-                        //                Text("Health")
-                        //                  .font(.system(size: 12, weight: .light, design: .serif))
-                        //                ProgressView(value: Float(health(for: index)), total: 100)
-                        //                Text("Attack")
-                        //                  .font(.system(size: 12, weight: .light, design: .serif))
-                        //                ProgressView(value: Float(attack(for: index)), total: 100)
                     }
+                    // }
                 }
-                // }
-            }
-        }.position(CGPoint(x: 220, y: 370))
+            }.position(CGPoint(x: 220, y: 720))
+        }
     }
 }
 
