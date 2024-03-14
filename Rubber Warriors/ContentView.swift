@@ -56,9 +56,10 @@ struct ContentView: View {
                             Text("Health")
                                 .font(.system(size: 12, weight: .light, design: .serif))
                             ProgressView(value: 0, total: enemyHpTotal)
-                            Text("Attack")
+                            Text("Sp. Attack")
                                 .font(.system(size: 12, weight: .light, design: .serif))
                             ProgressView(value: 0, total: enemyDmgTotal)
+                                .tint(.purple)
                         }
                         else{
                             Image("goose")
@@ -68,9 +69,10 @@ struct ContentView: View {
                                 .font(.system(size: 12, weight: .light, design: .serif))
                             ProgressView(value: enemyHp, total: enemyHpTotal)
                                 .tint(.green)
-                            Text("Attack")
+                            Text("Sp. Attack")
                                 .font(.system(size: 12, weight: .light, design: .serif))
                             ProgressView(value: enemyDmg, total: enemyDmgTotal)
+                                .tint(.purple)
                         }
                     }
                 }
@@ -135,6 +137,7 @@ struct ContentView: View {
                     }
                     attackTurn += 1
                 }
+                .tint(.black)
             }
             VStack{
                 ScrollView(.horizontal) {
@@ -165,9 +168,10 @@ struct ContentView: View {
                                     Text("Health")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: 0, total: hp1Total)
-                                    Text("Attack")
+                                    Text("Sp. Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: dmg1, total: dmg1Total)
+                                        .tint(.purple)
                                 }
                                 else{
                                     Image(DUckSelection1)
@@ -179,9 +183,10 @@ struct ContentView: View {
                                         .tint(.green)
                                     //Whats is the attack bar for?
                                     //Will they gain/lose attack damage over time?
-                                    Text("Attack")
+                                    Text("Sp. Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: dmg1, total: dmg1Total)
+                                        .tint(.purple)
                                 }
                             }
                             .frame(width: 110, height: 200)
@@ -210,9 +215,10 @@ struct ContentView: View {
                                     Text("Health")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: 0, total: hp2Total)
-                                    Text("Attack")
+                                    Text("Sp. Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: dmg1, total: dmg2Total)
+                                        .tint(.purple)
                                 }
                                 else{
                                     Image(DUckSelection2)
@@ -222,9 +228,10 @@ struct ContentView: View {
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: hp2, total: hp2Total)
                                         .tint(.green)
-                                    Text("Attack")
+                                    Text("Sp. Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: dmg2, total: dmg2Total)
+                                        .tint(.purple)
                                 }
                             }
                             .frame(width: 110, height: 200)
@@ -257,9 +264,10 @@ struct ContentView: View {
                                         Text("Health")
                                             .font(.system(size: 12, weight: .light, design: .serif))
                                         ProgressView(value: 0, total: hp3Total)
-                                        Text("Attack")
+                                        Text("Sp. Attack")
                                             .font(.system(size: 12, weight: .light, design: .serif))
                                         ProgressView(value: dmg1, total: dmg3Total)
+                                            .tint(.purple)
                                     }
                                     else{
                                         Image(DUckSelection3)
@@ -269,9 +277,10 @@ struct ContentView: View {
                                             .font(.system(size: 12, weight: .light, design: .serif))
                                         ProgressView(value: hp3, total: hp3Total)
                                             .tint(.green)
-                                        Text("Attack")
+                                        Text("Sp. Attack")
                                             .font(.system(size: 12, weight: .light, design: .serif))
                                         ProgressView(value: dmg3, total: dmg3Total)
+                                            .tint(.purple)
                                     }
                                 }
                             }
