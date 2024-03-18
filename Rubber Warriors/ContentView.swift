@@ -36,6 +36,7 @@ struct ContentView: View {
     @State private var enemyHpTotal = 500.00
     @State private var enemyDmgTotal = 50.00
     
+    @State private var playerTurn = "Goose"
     
     var body: some View {
         ZStack {
@@ -45,10 +46,16 @@ struct ContentView: View {
                 .ignoresSafeArea()
             VStack {
                 
+                Text("Turn: \(playerTurn)")
+                    .font(Font.custom("Verdana Bold", size: 24))
+                    .foregroundColor(.black)
+                    .padding()
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
                 ZStack {
                     
                     VStack {
-                        
                         if(enemyHp <= 0){
                             Image("goosesketch")
                                 .resizable()
@@ -56,10 +63,10 @@ struct ContentView: View {
                             Text("Health")
                                 .font(.system(size: 12, weight: .light, design: .serif))
                             ProgressView(value: 0, total: enemyHpTotal)
-                            Text("Sp. Attack")
+                            Text("Attack")
                                 .font(.system(size: 12, weight: .light, design: .serif))
                             ProgressView(value: 0, total: enemyDmgTotal)
-                                .tint(.purple)
+                                .tint(.red)
                         }
                         else{
                             Image("goose")
@@ -68,21 +75,54 @@ struct ContentView: View {
                             Text("Health")
                                 .font(.system(size: 12, weight: .light, design: .serif))
                             ProgressView(value: enemyHp, total: enemyHpTotal)
-                                .tint(.green)
-                            Text("Sp. Attack")
+                                .tint(.yellow)
+                            Text("Attack")
                                 .font(.system(size: 12, weight: .light, design: .serif))
                             ProgressView(value: enemyDmg, total: enemyDmgTotal)
-                                .tint(.purple)
+                                .tint(.red)
                         }
                     }
                 }
                 .frame(width: 110, height: 200)
                 
+                Text(" ")
+                
+                
                 Button("Attack") {
                     var whichDuck = Int.random(in: 0..<3) //ignore this warning
                     if(attackTurn % 2 == 0){
+                        playerTurn = "DUCKIES"
                         if(enemyHp > 0){
                             enemyHp = enemyHp - (dmg1 + dmg2 + dmg3)
+                            if(enemyHp <= 0){
+                                let alert = UIAlertController(title: "Victory!", message: "You Win!", preferredStyle: .alert)
+                                let action = UIAlertAction(title: "OK", style: .default){_ in
+                                    hp1 = 100.00
+                                    hp2 = 100.00
+                                    hp3 = 100.00
+                                    hp1Total = 100.00
+                                    hp2Total = 100.00
+                                    hp3Total = 100.00
+                                    dmg1 = 50.00
+                                    dmg2 = 50.00
+                                    dmg3 = 50.00
+                                    dmg1Total = 50.00
+                                    dmg2Total = 50.00
+                                    dmg3Total = 50.00
+                                    enemyHp = 500.00
+                                    enemyDmg = 50.00
+                                    enemyHpTotal = 500.00
+                                    enemyDmgTotal = 50.00
+                                    DUckSelection1 = "Original"
+                                    DUckSelection2 = "Original"
+                                    DUckSelection3 = "Original"
+                                    selectedDuck1 = "Original"
+                                    selectedDuck2 = "Original"
+                                    selectedDuck3 = "Original"
+                                }
+                                alert.addAction(action)
+                                UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil) //ignore this warning as well
+                            }
                         }
                         else{
                             let alert = UIAlertController(title: "Victory!", message: "You Win!", preferredStyle: .alert)
@@ -92,6 +132,7 @@ struct ContentView: View {
                         }
                     }
                     else{
+                        playerTurn = "BADGUY"
                         if(whichDuck == 0){
                             if(hp1 > 0){
                                 hp1 = hp1 - enemyDmg
@@ -137,7 +178,11 @@ struct ContentView: View {
                     }
                     attackTurn += 1
                 }
-                .tint(.black)
+                .font(Font.custom("Verdana Bold", size: 20))
+                .foregroundColor(.blue)
+                .padding()
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             VStack{
                 ScrollView(.horizontal) {
@@ -152,30 +197,30 @@ struct ContentView: View {
                                         Button(option) { selectedDuck1 = option
                                             DUckSelection1 = selectedDuck1
                                             if DUckSelection1 == "Fire" {
-                                                 dmg1 = 120
-                                                hp1 = 60
-                                                hp1Total = 60
+                                                dmg1 = 200
+                                                hp1 = 50
+                                                hp1Total = 50
                                             }
                                             else if DUckSelection1 == "Ice" {
-                                                 dmg1 = 60
-                                                hp1 = 120
-                                                hp1Total = 120
+                                                dmg1 = 50
+                                                hp1 = 200
+                                                hp1Total = 200
                                             }
-                                            else if DUckSelection1 == "Water" {
-                                               dmg1 = 70
-                                                hp1 = 110
-                                                hp1Total = 110
+                                            else if DUckSelection3 == "Water" {
+                                                dmg3 = 75
+                                                hp3 = 150
+                                                hp3Total = 150
                                             }
-                                        else if DUckSelection1 == "Earth" {
-                                               dmg1 = 75
-                                            hp1 = 105
-                                            hp1Total = 105
+                                            else if DUckSelection3 == "Earth" {
+                                                dmg3 = 150
+                                                hp3 = 75
+                                                hp3Total = 75
                                             }
                                             else if DUckSelection1 == "Original" {
-                                                   dmg1 = 80
+                                                dmg1 = 80
                                                 hp1 = 100
                                                 hp1Total = 100
-                                                }
+                                            }
                                             
                                         }
                                     }
@@ -187,19 +232,19 @@ struct ContentView: View {
                                 }
                                 //Dropdown end
                                 if(hp1 <= 0){
-                                    Image(DUckSelection1)
+                                    Image("Sketch")
                                         .resizable()
                                         .frame(width: 100, height: 100)
                                     Text("Health")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: 0, total: hp1Total)
-                                        .tint(.green)
+                                        .tint(.yellow)
                                     //Whats is the attack bar for?
                                     //Will they gain/lose attack damage over time?
-                                    Text("Sp. Attack")
+                                    Text("Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
-                                    ProgressView(value: dmg1, total: 200)
-                                        .tint(.purple)
+                                    ProgressView(value: 0, total: 200)
+                                        .tint(.red)
                                 }
                                 else{
                                     Image(DUckSelection1)
@@ -208,13 +253,13 @@ struct ContentView: View {
                                     Text("Health")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: hp1, total: hp1Total)
-                                        .tint(.green)
+                                        .tint(.yellow)
                                     //Whats is the attack bar for?
                                     //Will they gain/lose attack damage over time?
-                                    Text("Sp. Attack")
+                                    Text("Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: dmg1, total: 200)
-                                        .tint(.purple)
+                                        .tint(.red)
                                 }
                             }
                             .frame(width: 110, height: 200)
@@ -226,30 +271,30 @@ struct ContentView: View {
                                         Button(option) { selectedDuck2 = option
                                             DUckSelection2 = selectedDuck2
                                             if DUckSelection2 == "Fire" {
-                                                 dmg2 = 120
-                                                hp2 = 60
-                                                hp2Total = 60
+                                                dmg2 = 200
+                                                hp2 = 50
+                                                hp2Total = 50
                                             }
                                             else if DUckSelection2 == "Ice" {
-                                                 dmg2 = 60
-                                                hp2 = 120
-                                                hp2Total = 120
+                                                dmg2 = 50
+                                                hp2 = 200
+                                                hp2Total = 200
                                             }
-                                            else if DUckSelection2 == "Water" {
-                                               dmg2 = 70
-                                                hp2 = 110
-                                                hp2Total = 110
+                                            else if DUckSelection3 == "Water" {
+                                                dmg3 = 75
+                                                hp3 = 150
+                                                hp3Total = 150
                                             }
-                                        else if DUckSelection2 == "Earth" {
-                                               dmg2 = 75
-                                            hp2 = 105
-                                            hp2Total = 105
+                                            else if DUckSelection3 == "Earth" {
+                                                dmg3 = 150
+                                                hp3 = 75
+                                                hp3Total = 75
                                             }
                                             else if DUckSelection2 == "Original" {
-                                                   dmg2 = 80
+                                                dmg2 = 80
                                                 hp2 = 100
                                                 hp2Total = 100
-                                                }
+                                            }
                                             
                                         }
                                     }
@@ -268,10 +313,10 @@ struct ContentView: View {
                                     Text("Health")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: 0, total: hp2Total)
-                                    Text("Sp. Attack")
+                                    Text("Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
-                                    ProgressView(value: dmg1, total: dmg2Total)
-                                        .tint(.purple)
+                                    ProgressView(value: 0, total: dmg2Total)
+                                        .tint(.red)
                                 }
                                 else{
                                     Image(DUckSelection2)
@@ -280,13 +325,13 @@ struct ContentView: View {
                                     Text("Health")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: hp2, total: hp2Total)
-                                        .tint(.green)
+                                        .tint(.yellow)
                                     //Whats is the attack bar for?
                                     //Will they gain/lose attack damage over time?
-                                    Text("Sp. Attack")
+                                    Text("Attack")
                                         .font(.system(size: 12, weight: .light, design: .serif))
                                     ProgressView(value: dmg2, total: 200)
-                                        .tint(.purple)
+                                        .tint(.red)
                                 }
                             }
                             .frame(width: 110, height: 200)
@@ -302,31 +347,31 @@ struct ContentView: View {
                                                 DUckSelection3 = selectedDuck3
                                                 DUckSelection3 = selectedDuck3
                                                 if DUckSelection3 == "Fire" {
-                                                     dmg3 = 120
-                                                    hp3 = 60
-                                                    hp3Total = 60
+                                                    dmg3 = 200
+                                                    hp3 = 50
+                                                    hp3Total = 50
                                                     
                                                 }
                                                 else if DUckSelection3 == "Ice" {
-                                                     dmg3 = 60
-                                                    hp3 = 120
-                                                    hp3Total = 120
+                                                    dmg3 = 50
+                                                    hp3 = 200
+                                                    hp3Total = 200
                                                 }
                                                 else if DUckSelection3 == "Water" {
-                                                   dmg3 = 70
-                                                    hp3 = 110
-                                                    hp3Total = 110
+                                                    dmg3 = 75
+                                                    hp3 = 150
+                                                    hp3Total = 150
                                                 }
-                                            else if DUckSelection3 == "Earth" {
-                                                   dmg3 = 75
-                                                hp3 = 105
-                                                hp3Total = 105
+                                                else if DUckSelection3 == "Earth" {
+                                                    dmg3 = 150
+                                                    hp3 = 75
+                                                    hp3Total = 75
                                                 }
                                                 else if DUckSelection3 == "Original" {
-                                                       dmg3 = 80
+                                                    dmg3 = 80
                                                     hp3 = 100
                                                     hp3Total = 105
-                                                    }
+                                                }
                                             }
                                         }
                                     } label: {
@@ -345,10 +390,10 @@ struct ContentView: View {
                                         Text("Health")
                                             .font(.system(size: 12, weight: .light, design: .serif))
                                         ProgressView(value: 0, total: hp3Total)
-                                        Text("Sp. Attack")
+                                        Text("Attack")
                                             .font(.system(size: 12, weight: .light, design: .serif))
-                                        ProgressView(value: dmg1, total: dmg3Total)
-                                            .tint(.purple)
+                                        ProgressView(value: 0, total: dmg3Total)
+                                            .tint(.red)
                                     }
                                     else{
                                         Image(DUckSelection3)
@@ -357,13 +402,13 @@ struct ContentView: View {
                                         Text("Health")
                                             .font(.system(size: 12, weight: .light, design: .serif))
                                         ProgressView(value: hp3, total: hp3Total)
-                                            .tint(.green)
+                                            .tint(.yellow)
                                         //Whats is the attack bar for?
                                         //Will they gain/lose attack damage over time?
-                                        Text("Sp. Attack")
+                                        Text("Attack")
                                             .font(.system(size: 12, weight: .light, design: .serif))
                                         ProgressView(value: dmg3, total: 200)
-                                            .tint(.purple)
+                                            .tint(.red)
                                     }
                                 }
                             }
