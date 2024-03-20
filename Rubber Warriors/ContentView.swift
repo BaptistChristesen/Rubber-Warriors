@@ -229,6 +229,8 @@ struct ContentView: View {
                                         .foregroundColor(.black)
                                         .frame(maxWidth: .infinity)
                                         .padding(.horizontal)
+                                        .background(Color.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
                                 }
                                 //Dropdown end
                                 if(hp1 <= 0){
@@ -303,6 +305,8 @@ struct ContentView: View {
                                         .foregroundColor(.black)
                                         .frame(maxWidth: .infinity)
                                         .padding(.horizontal)
+                                        .background(Color.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
                                 }
                                 //end
                                 
@@ -379,6 +383,8 @@ struct ContentView: View {
                                             .foregroundColor(.black)
                                             .frame(maxWidth: .infinity)
                                             .padding(.horizontal)
+                                            .background(Color.white)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
                                     }
                                     .frame(width: 110)
                                     //end
